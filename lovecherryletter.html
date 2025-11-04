@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Letter to You🍒💜</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #cfa8ff, #f5e3ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    /* 🌸 Navbar Styles */
+    #mainNav {
+      background: linear-gradient(135deg, #d9b6ff, #f1d9ff);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      animation: fadeInDown 1s ease;
+    }
+
+    .navbar .nav-link {
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-link:hover {
+      color: #8e2de2 !important;
+      transform: scale(1.05);
+    }
+
+    body {
+      padding-top: 85px;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 💌 Scene Section */
+    .scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* 🌹 Rose */
+    .rose {
+      width: 140px;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite alternate;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      z-index: 3;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+
+    /* 💌 Letter Container */
+    .letter-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 25px 35px;
+      border-radius: 20px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+      max-width: 400px;
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: #6b1fb3;
+    }
+
+    p {
+      font-size: 18px;
+      color: #5b3c91;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background: #a555ec;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #8e2de2;
+      transform: scale(1.05);
+    }
+
+    /* ❤️ Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      color: rgba(255, 255, 255, 0.6);
+      animation: floatUp 6s linear infinite;
+      font-size: 20px;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    }
+
+    /* ✨ Click text above rose */
+    .click-text {
+      font-size: 22px;
+      color: #6b1fb3;
+      font-weight: 600;
+      margin-bottom: 15px;
+      animation: pulseText 2s infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @media (max-width: 768px) {
+      .letter-container { max-width: 90%; }
+      .rose { width: 100px; }
+      .click-text { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 💜 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html" style="color:#6b1fb3; font-family:'Great Vibes', cursive; font-size:28px;">
+        🍒💜Our Story
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="lovecherryletter.html">Letter</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Memories.html">Memories</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Forever.html">Forever</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="hearts-container"></div>
+
+  <div class="scene">
+    <div class="click-text" id="clickText">click on the Cherry</div>
+    <img src="image/cherry.png" alt="rose" class="rose" id="rose" title="click me " />
+    <div class="letter-container" id="letter">
+      <h1>My Love Letter 🍒💌</h1>
+      <p>
+        From the very first moment I met you,<br>
+        you’ve filled my life with color, laughter, and peace.<br><br>
+        You are my favorite story, my sweetest melody,<br>
+        and my forever person 🍒💜
+      </p>
+      <button id="nextBtn">Next🍒</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Navbar animation
+    window.addEventListener('load', () => {
+      gsap.from("#mainNav", {duration: 1, opacity: 0, y: -30, ease: "power3.out"});
+      gsap.from(".nav-link", {duration: 1, opacity: 0, y: -10, stagger: 0.1, delay: 0.3});
+    });
+
+    // Floating hearts
+    function createHearts() {
+      const container = document.getElementById("hearts-container");
+      let heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "&#10084;";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      heart.style.fontSize = 12 + Math.random() * 20 + "px";
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHearts, 900);
+
+    // 🌹 Reveal letter on rose click
+    const rose = document.getElementById("rose");
+    const letter = document.getElementById("letter");
+    const clickText = document.getElementById("clickText");
+
+    rose.addEventListener("click", () => {
+      gsap.to([rose, clickText], {
+        opacity: 0,
+        y: -50,
+        scale: 0.5,
+        duration: 0.8,
+        ease: "power2.inOut",
+        onComplete: () => {
+          rose.style.display = "none";
+          clickText.style.display = "none";
+          gsap.to(letter, {duration: 1.2, opacity: 1, scale: 1, ease: "elastic.out(1, 0.5)"});
+        }
+      });
+    });
+
+    // Next button
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      gsap.to("body", {
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.inOut",
+        onComplete: () => {
+          window.location.href = "Memories.html";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

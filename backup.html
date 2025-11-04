@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Memories🍒💜</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS + Animate.css -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink1:#fff0f5;
+      --pink2:#ffc0cb;
+      --accent:#ff3f7f;
+    }
+
+    body{
+      font-family:'Dancing Script',cursive;
+      background:linear-gradient(135deg,var(--pink1),var(--pink2));
+      color:#333;
+      margin:0;
+      overflow-x:hidden;
+    }
+    #timeline h3 {
+    text-align: center;
+    margin-bottom: 44px;
+    margin-top: 37px;
+    font-size: 35px;
+}
+@media (min-width: 1200px) {
+    .h4, h4 {
+        font-size: 2.5rem;
+    }
+}
+
+    /* floating hearts */
+    .heart{
+      position:fixed;
+      bottom:0;
+      font-size:20px;
+      z-index:1;
+      animation: floatUp 5s linear forwards;
+      opacity:0.8;
+      pointer-events:none;
+    }
+    @keyframes floatUp {
+      0%{transform:translateY(0) scale(1);opacity:1}
+      100%{transform:translateY(-100vh) scale(0.8);opacity:0}
+    }
+
+    /* welcome screen */
+    #welcomeScreen{
+      position:fixed; inset:0;
+      background:linear-gradient(135deg,#ff9ecf,#ff6fa9);
+      display:flex; align-items:center; justify-content:center; flex-direction:column;
+      text-align:center;
+      color:#fff;
+      z-index:9999;
+    }
+    #welcomeScreen h1{font-size:2.4rem;}
+    #startBtn{margin-top:20px;padding:12px 28px;border:none;border-radius:50px;background:#fff;color:var(--accent);font-size:1.1rem;}
+
+    /* navbar */
+    .navbar{background:rgba(255,120,150,0.9)!important;}
+    .navbar a{color:#fff!important;font-family:'Pacifico',cursive;}
+
+    /* timeline - horizontal auto-scroll */
+    #timeline{
+      overflow:hidden;
+      white-space:nowrap;
+      padding:60px 0;
+      background:transparent;
+      position:relative;
+    }
+    #timeline h3{
+      text-align:center;
+      margin-bottom:25px;
+    }
+    .timeline-track{
+      display:inline-flex;
+      animation:scrollTimeline 30s linear infinite;
+    }
+    @keyframes scrollTimeline{
+      0%{transform:translateX(0);}
+      100%{transform:translateX(-50%);}
+    }
+    .tl-card{
+      background:linear-gradient(180deg,#ff7aa9,#ff9ecf);
+      color:#fff;
+      border-radius:14px;
+      padding:18px;
+      width:220px;
+      margin:0 16px;
+      text-align:center;
+      flex-shrink:0;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* gallery */
+    .carousel img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:contain;
+      background:white;
+      border-radius:14px;
+    }
+    .carousel-control-prev,
+    .carousel-control-next{filter:invert(1);}
+
+    /* map */
+    iframe{width:100%;height:300px;border-radius:12px;border:0;}
+
+    /* messages */
+    #messages img{animation:fadeIn 1s ease-in-out;}
+    @keyframes fadeIn{from{opacity:0;transform:scale(0.98);}to{opacity:1;transform:scale(1);}}
+
+    footer{text-align:center;padding:30px;background:#ff7fa9;color:white;border-top-left-radius:12px;border-top-right-radius:12px;}
+    #musicToggle{position:fixed;right:18px;bottom:18px;background:#fff;color:var(--accent);border:none;padding:10px 14px;border-radius:50px;z-index:2000;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+  </style>
+</head>
+<body>
+
+  <!-- Welcome screen -->
+  <div id="welcomeScreen">
+    <h1>Welcome to Our Love Story 💞</h1>
+    <p>A small world full of memories and love</p>
+    <button id="startBtn">Start the Journey 💖</button>
+  </div>
+
+  <!-- Music -->
+  <audio id="bgMusic" loop>
+    <source src="MEDIA/x.mp3" type="audio/mp3">
+  </audio>
+  <button id="musicToggle">🔊</button>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Us ❤️</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#timeline">Timeline</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallerySection">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#places">Our Places</a></li>
+          <li class="nav-item"><a class="nav-link" href="#messages">Messages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#counter">Counter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Timeline -->
+  <section id="timeline" data-aos="fade-up">
+    <h3 style="color:var(--accent);">Our LOVE STORY timeline 💞</h3>
+    <div class="timeline-track">
+      <div class="tl-card"><h5>June 28, 2022</h5><p>When our story began 💕</p></div>
+      <div class="tl-card"><h5>May 1, 2025</h5><p>We talked again — fate smiled ✨</p></div>
+      <div class="tl-card"><h5>Aug 31, 2025</h5><p>Our first meeting 💫</p></div>
+      <div class="tl-card"><h5>Oct 8, 2025</h5><p>Cairo Uni — happiest day 💖</p></div>
+      <!-- duplicate to create infinite loop illusion -->
+      <div class="tl-card"><h5>June 28, 2022</h5><p>When our story began 💕</p></div>
+      <div class="tl-card"><h5>May 1, 2025</h5><p>We talked again — fate smiled ✨</p></div>
+      <div class="tl-card"><h5>Aug 31, 2025</h5><p>Our first meeting 💫</p></div>
+      <div class="tl-card"><h5>Oct 8, 2025</h5><p>Cairo Uni — happiest day 💖</p></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <h3 style="color:var(--accent);text-align:center;">Our gallery 💖</h3>
+  <section id="gallerySection" class="container my-5" data-aos="fade-up">
+    <div class="row gy-4">
+      <div class="col-md-6">
+                 <h3 style="color:var(--accent);text-align:center;">Our first day together 💖</h3>
+
+        <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active"><img src="MEDIA/5.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="image/cherry1.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="MEDIA/7.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="MEDIA/8.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="MEDIA/9.jpeg" alt=""></div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+         <h3 style="color:var(--accent);text-align:center;">Our second day together 💖</h3>
+        <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active"><img src="MEDIA/10.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="MEDIA/11.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="MEDIA/12.jpeg" alt=""></div>
+            <div class="carousel-item"><img src="MEDIA/13.jpeg" alt=""></div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Places -->
+  <section id="places" class="container my-5" data-aos="fade-up">
+    <h3 style="color:var(--accent);text-align:center;">Our Places </h3>
+    <div class="row gy-4 mt-3">
+      <div class="col-md-6">
+        <h6>Crimson Cairo , where we met for the first time</h6>
+        <iframe src="https://www.google.com/maps?q=Crimson+Zamalek+Cairo&output=embed"></iframe>
+      </div>
+      <div class="col-md-6">
+        <h6>Left Bank , our second meeting was here</h6>
+        <iframe src="https://www.google.com/maps?q=Left+Bank+Zamalek&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Messages -->
+  <section id="messages" class="container my-5 text-center" data-aos="fade-up">
+    <h3 style="color:var(--accent); margin-bottom:18px;">Special WhatsApp Messages 💬</h3>
+    <div id="whatsappCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="MEDIA/1.jpeg" class="d-block mx-auto rounded-4 shadow" style="max-width:420px;width:90%;height:auto;"></div>
+        <div class="carousel-item"><img src="MEDIA/2.jpeg" class="d-block mx-auto rounded-4 shadow" style="max-width:420px;width:90%;height:auto;"></div>
+        <div class="carousel-item"><img src="MEDIA/3.jpeg" class="d-block mx-auto rounded-4 shadow" style="max-width:420px;width:90%;height:auto;"></div>
+        <div class="carousel-item"><img src="MEDIA/4.jpeg" class="d-block mx-auto rounded-4 shadow" style="max-width:420px;width:90%;height:auto;"></div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#whatsappCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#whatsappCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Counter -->
+  <section id="counter" class="container my-5 text-center" data-aos="fade-up">
+    <h4 style="color:var(--accent);">We've been in love for</h4>
+    <div id="loveCounter" style="font-size:1.25rem; color:#b31f56; margin-top:8px;"></div>
+    <p style="color:#9a2f5a;">(counting since June 28, 2022)</p>
+  </section>
+
+  <footer>Made with 💖 just for you.</footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:800,once:true});
+
+    // Floating hearts
+    const colors=['#ff69b4','#ff1493','#ffb6c1','#ffc0cb'];
+    function createHeart(){
+      const el=document.createElement('div');
+      el.className='heart';
+      el.textContent='💖';
+      el.style.left=Math.random()*100+'vw';
+      el.style.fontSize=Math.random()*18+10+'px';
+      el.style.color=colors[Math.floor(Math.random()*colors.length)];
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),5000);
+    }
+    setInterval(createHeart,600);
+
+    // Love counter
+    function updateLove(){
+      const start=new Date(2022,5,28);
+      const now=new Date();
+      const days=Math.floor((now-start)/(1000*60*60*24));
+      document.getElementById('loveCounter').textContent=days+" days 💕";
+    }
+    updateLove();
+    setInterval(updateLove,1000*60*60);
+
+    // Music control
+    const bg=document.getElementById('bgMusic');
+    const toggle=document.getElementById('musicToggle');
+    bg.volume=0.3;
+    toggle.addEventListener('click',async()=>{
+      if(bg.paused){await bg.play();toggle.textContent='🔊';}
+      else{bg.pause();toggle.textContent='🔇';}
+    });
+
+    // Welcome screen
+    const welcome=document.getElementById('welcomeScreen');
+    document.getElementById('startBtn').addEventListener('click',()=>{
+      welcome.classList.add('animate__fadeOut');
+      setTimeout(()=>welcome.style.display='none',700);
+      bg.play();
+    });
+  </script>
+</body>
+</html>

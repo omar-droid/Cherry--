@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forever Yours🍒💜</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #cba9ff, #f3d5ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      color: rgba(255, 255, 255, 0.7);
+      animation: floatUp 6s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    }
+
+    .content {
+      text-align: center;
+      z-index: 2;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 60px;
+      color: #6b1fb3;
+      margin-bottom: 10px;
+      opacity: 0;
+    }
+
+    p {
+      font-size: 22px;
+      color: #5b3c91;
+      opacity: 0;
+    }
+
+    .btn-replay {
+      background: #a555ec;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      margin-top: 40px;
+      transition: 0.3s;
+      font-size: 18px;
+      opacity: 0;
+    }
+
+    .btn-replay:hover {
+      background: #8e2de2;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 42px; }
+      p { font-size: 18px; }
+    }
+    #mainNav {
+    background: linear-gradient(135deg, #d9b6ff, #f1d9ff);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    animation: fadeInDown 1s ease;
+  }
+
+  .navbar .nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar .nav-link:hover {
+    color: #8e2de2 !important;
+    transform: scale(1.05);
+  }
+
+  body {
+    padding-top: 85px; /* عشان النافبار ثابت */
+  }
+
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  </style>
+</head>
+<body>
+<!-- 🌸 Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm py-3" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html" style="color:#6b1fb3; font-family:'Great Vibes', cursive; font-size:28px;">
+      🍒💜Our Story
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="lovecherryletter.html">Letter</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Memories.html">Memories</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Forever.html">Forever</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- 🌸 Navbar End -->
+
+  <div id="hearts-container"></div>
+
+  <div class="content">
+    <h1 id="line1">Forever and Always🍒💜</h1>
+    <p id="line2">No matter where life takes us...</p>
+    <p id="line3">This song was just a melody,until I heard it with you. Since then, it became a part of us
+    We may not be talking right now, not a day has passed without me thinking about us,your smile, our talks, and the memories that were always better than reality. I collected all our moments here, hoping they reach you, touch your heart.
+</p>
+    <p id="line4">To the sweetest Sherry my heart ever knew.🍒💫</p>
+    <button class="btn-replay" id="replayBtn" onclick="replay()">Replay🍒💜</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script>
+    // Floating hearts generator
+    function createHearts() {
+      const container = document.getElementById("hearts-container");
+      for (let i = 0; i < 10; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "&#10084;";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+        heart.style.fontSize = 12 + Math.random() * 20 + "px";
+        container.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 8000);
+      }
+    }
+    setInterval(createHearts, 900);
+
+    // GSAP animations
+    window.onload = () => {
+      const tl = gsap.timeline({delay: 0.5});
+      tl.to("#line1", {duration: 1.5, opacity: 1, y: -10, ease: "power2.out"})
+        .to("#line2", {duration: 1.2, opacity: 1, y: -10, ease: "power2.out"}, "+=0.5")
+        .to("#line3", {duration: 1.2, opacity: 1, y: -10, ease: "power2.out"}, "+=0.4")
+        .to("#line4", {duration: 1.2, opacity: 1, y: -10, ease: "power2.out"}, "+=0.4")
+        .to("#replayBtn", {duration: 1, opacity: 1, scale: 1.05, ease: "elastic.out(1, 0.4)"}, "+=0.6");
+    };
+
+    // Replay function
+    function replay() {
+      gsap.to("body", {
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.inOut",
+        onComplete: () => {
+          window.location.href = "index.html";
+        }
+      });
+      window.addEventListener('load', () => {
+    gsap.from("#mainNav", {duration: 1, opacity: 0, y: -30, ease: "power3.out"});
+    gsap.from(".nav-link", {duration: 1, opacity: 0, y: -10, stagger: 0.1, delay: 0.3});
+  });
+    }
+  </script>
+</body>
+</html>

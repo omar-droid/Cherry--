@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Memories🍒💜</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #cfa8ff, #f5e3ff);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      color: rgba(255, 255, 255, 0.6);
+      animation: floatUp 6s linear infinite;
+      font-size: 20px;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      color: #6b1fb3;
+      font-size: 42px;
+      margin-bottom: 20px;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .carousel {
+      max-width: 500px;
+      width: 90%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+    
+
+    .timer {
+      font-family: 'Great Vibes', cursive;
+      color: #6b1fb3;
+      font-size: 22px;
+      margin-top: 20px;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .next-btn {
+     margin-top: 20px;
+      bottom: 25px;
+      background: #a555ec;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 35px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .next-btn:hover {
+      background: #8e2de2;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .carousel img { height: 250px; }
+      .next-btn { bottom: 15px; font-size: 16px; padding: 10px 25px; }
+    }
+    #mainNav {
+    background: linear-gradient(135deg, #d9b6ff, #f1d9ff);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    animation: fadeInDown 1s ease;
+  }
+
+  .navbar .nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar .nav-link:hover {
+    color: #8e2de2 !important;
+    transform: scale(1.05);
+  }
+
+  body {
+    padding-top: 85px; /* عشان النافبار ثابت */
+  }
+
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  /* Bootstrap card customization */
+.music-card {
+  max-width: 350px; /* أقصى عرض للكارد */
+  margin: 0 auto;
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.music-card img {
+  width: 100%;
+  height: 50px; /* ارتفاع مناسب للكارد */
+  object-fit: cover; /* يحافظ على نسبة الصورة */
+  border-radius: 15px 15px 0 0;
+}
+
+@media(max-width: 400px){
+    .music-card img {
+        height: 20px;
+    }
+    .music-card .card-body {
+        padding: 10px;
+    }
+    .music-card .card-title {
+        font-size: 0.9rem;
+    }
+    .music-card .card-text {
+        font-size: 0.8rem;
+    }
+    .music-card .btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    #memoriesCarousel {
+    width: 100%;
+    height: 200px;
+    /* max-height: 80vh; يخلي الكاروسيل ما ياخدش الشاشة كلها */
+    /* overflow: hidden; */
+  }
+
+  #memoriesCarousel .carousel-inner img {
+    width: 100%;
+    height: 300px;
+    /* object-fit: cover; الصورة تملأ الكاروسيل بالكامل */
+  }
+
+  @media (max-width: 768px) {
+    #memoriesCarousel .carousel-inner img {
+      /* height: 50vh; أصغر على الموبايل */
+    }
+  }
+}
+/* 🎵 Stylish Music Player Card */
+.music-card {
+  background: linear-gradient(135deg, #8e2de2, #c471ed);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 430px;
+  margin: 20px auto;
+}
+
+.music-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.music-card .music-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.music-card .card-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.music-card .card-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.music-card .btn {
+  background: white;
+  color: #6b1fb3;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.music-card .btn:hover {
+  background: #f1d9ff;
+  transform: scale(1.1);
+}
+
+.music-card input[type="range"] {
+  flex: 1;
+  accent-color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .music-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .music-card .music-img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+  }
+
+  .music-card input[type="range"] {
+    width: 100%;
+  }
+}
+/* 🎠 Carousel ثابت الارتفاع */
+#memoriesCarousel {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* الصور بارتفاع ثابت */
+#memoriesCarousel .carousel-item img {
+  width: 100%;
+  height: 800px; /* ← ← هنا الارتفاع الثابت */
+  object-fit: cover; /* يمنع التشويه */
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+/* تأثير بسيط أثناء الحركة */
+#memoriesCarousel .carousel-item.active img {
+  transform: scale(1);
+}
+#memoriesCarousel .carousel-item-next img,
+#memoriesCarousel .carousel-item-prev img {
+  transform: scale(1.05);
+}
+
+/* لو عايز نفس الارتفاع على الموبايل كمان */
+@media (max-width: 768px) {
+  #memoriesCarousel .carousel-item img {
+    height: 400px; /* يفضل تسيبه نفس الرقم عشان يفضل ثابت */
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+  <!-- 🌸 Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm py-3" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html" style="color:#6b1fb3; font-family:'Great Vibes', cursive; font-size:28px;">
+      🍒💜Our Story
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+       <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="lovecherryletter.html">Letter</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Memories.html">Memories</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Forever.html">Forever</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- 🌸 Navbar End -->
+<h1 class="animate__animated animate__fadeInDown">Our Memories🍒💞</h1>
+
+<!-- 🎧 Advanced Music Player Card -->
+<div class="card music-card text-white d-flex flex-row align-items-center p-3">
+  <!-- صورة الألبوم -->
+  <img src="image/aziza.jpg" class="music-img me-3" alt="Album Cover">
+
+  <!-- المحتوى -->
+  <div class="card-body p-0 text-start w-100">
+    <h5 class="card-title mb-1">Mestaneyak</h5>
+    <p class="card-text mb-2">Aziza Galal</p>
+
+    <!-- الصوت -->
+    <audio id="audioPlayer" src="music/aziza.mp3"></audio>
+
+    <!-- شريط التقدم -->
+    <div class="d-flex align-items-center mt-2">
+      <span id="currentTime" style="font-size: 0.8rem;">0:00</span>
+      <input type="range" id="progressBar" class="form-range mx-2" value="0" min="0" max="100">
+      <span id="duration" style="font-size: 0.8rem;">0:00</span>
+    </div>
+
+    <!-- الأزرار -->
+    <div class="mt-2">
+      <button id="playBtn" class="btn btn-light btn-sm mx-1">▶</button>
+      <button id="pauseBtn" class="btn btn-light btn-sm mx-1">⏸</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Carousel -->
+<div id="memoriesCarousel" class="carousel slide animate__animated animate__fadeInUp" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="image/cherry1.jpeg" class="d-block w-100 memory-img" alt="Memory 1" />
+    </div>
+    <div class="carousel-item">
+      <img src="image/cherry2.jpeg" class="d-block w-100 memory-img" alt="Memory 2" />
+    </div>
+    <div class="carousel-item">
+      <img src="image/cherry3.jpeg" class="d-block w-100 memory-img" alt="Memory 3" />
+    </div>
+    <div class="carousel-item">
+      <img src="image/cherry4.jpeg" class="d-block w-100 memory-img" alt="Memory 4" />
+    </div>
+    <div class="carousel-item">
+      <img src="image/cherry5.jpeg" class="d-block w-100 memory-img" alt="Memory 5" />
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#memoriesCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#memoriesCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+  <!-- Timer -->
+  <div class="timer" id="loveTimer"></div>
+
+  <!-- Next Button -->
+  <button id="nextBtn" class="next-btn ">Next🍒💜</button>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  // ---------------- ❤️ Timer ----------------
+  function updateLoveTimer() {
+    const startDate = new Date("2025-08-28T00:00:00");
+    const now = new Date();
+    const diff = now - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    document.getElementById("loveTimer").innerHTML =
+ `We've been together for and i'm not here to be a memory i'm here to be your present and your forever🍒💜<br>${days} days, ${hours} hrs, ${minutes} mins, and ${seconds} secs 🍒💜`;
+  }
+  setInterval(updateLoveTimer, 1000);
+  updateLoveTimer();
+
+
+  // ---------------- 🎬 GSAP Animations ----------------
+  window.addEventListener('load', () => {
+    gsap.from("h1", { duration: 1.2, opacity: 0, y: -40, ease: "power3.out" });
+    gsap.from(".carousel", { duration: 1.5, opacity: 0, y: 50, delay: 0.3 });
+    gsap.from(".timer", { duration: 1.8, opacity: 0, y: 30, delay: 0.8 });
+    gsap.from("#mainNav", { duration: 1, opacity: 0, y: -30, ease: "power3.out" });
+    gsap.from(".nav-link", { duration: 1, opacity: 0, y: -10, stagger: 0.1, delay: 0.3 });
+  });
+
+
+  // ---------------- 🔄 Page Transition ----------------
+  const nextBtn = document.getElementById("nextBtn");
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      gsap.to("body", {
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.inOut",
+        onComplete: () => {
+          window.location.href = "Forever.html"; // غيّر دي حسب الصفحة اللي بعدها
+        }
+      });
+    });
+  }
+
+
+  // ---------------- 🎵 Audio Player ----------------
+  document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+
+    if (!audio) return console.error("❌ audioPlayer element not found!");
+
+    function formatTime(sec) {
+      if (isNaN(sec)) return "0:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    // تشغيل
+    playBtn?.addEventListener('click', async () => {
+      try {
+        await audio.play();
+      } catch (err) {
+        console.warn("Autoplay blocked — user interaction needed", err);
+      }
+    });
+
+    // إيقاف
+    pauseBtn?.addEventListener('click', () => audio.pause());
+
+    // تحديث الوقت وشريط التقدم
+    audio.addEventListener('timeupdate', () => {
+      if (progressBar && audio.duration) {
+        progressBar.value = (audio.currentTime / audio.duration) * 100;
+      }
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    // عند تحميل الملف
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    // السحب من الشريط
+    progressBar?.addEventListener('input', () => {
+      if (audio.duration) {
+        audio.currentTime = (progressBar.value / 100) * audio.duration;
+      }
+    });
+
+    // خطأ تحميل الصوت
+    audio.addEventListener('error', () => {
+      alert("⚠️ خطأ في تحميل ملف الصوت — تأكد من المسار الصحيح.");
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome Cherry🍒💜</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #cfa8ff, #f5e3ff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
+
+    /* 🌸 Navbar Styles */
+    #mainNav {
+      background: linear-gradient(135deg, #d9b6ff, #f1d9ff);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      animation: fadeInDown 1s ease;
+    }
+
+    .navbar .nav-link {
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar .nav-link:hover {
+      color: #8e2de2 !important;
+      transform: scale(1.05);
+    }
+
+    body {
+      padding-top: 85px;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Main content */
+    .password-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 40px 30px;
+      text-align: center;
+      width: 300px;
+      z-index: 2;
+    }
+
+    input {
+      border-radius: 30px;
+      border: 1px solid #b57ee5;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    button {
+      background: #a555ec;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #8e2de2;
+      transform: scale(1.05);
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      color: rgba(255, 255, 255, 0.6);
+      animation: floatUp 6s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 💜 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html" style="color:#6b1fb3; font-family:'Great Vibes', cursive; font-size:28px;">
+        🍒💜Our Story
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="lovecherryletter.html">Letter</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Memories.html">Memories</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="Forever.html">Forever</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="hearts-container"></div>
+
+  <!-- Main password box -->
+  <div class="password-box animate__animated animate__fadeInUp">
+    <h2 style="color:#6b1fb3;">Enter Password Cherry🍒💜💌</h2>
+    <input type="password" id="password" placeholder="Enter your secret..." />
+    <button onclick="checkPassword()">Unlock🍒💜</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // GSAP Navbar animation
+    window.addEventListener('load', () => {
+      gsap.from("#mainNav", {duration: 1, opacity: 0, y: -30, ease: "power3.out"});
+      gsap.from(".nav-link", {duration: 1, opacity: 0, y: -10, stagger: 0.1, delay: 0.3});
+    });
+
+    // Floating hearts
+    function createHearts() {
+      const container = document.getElementById("hearts-container");
+      let heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "&#10084;";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      heart.style.fontSize = 12 + Math.random() * 20 + "px";
+      container.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 8000);
+    }
+    setInterval(createHearts, 900);
+
+    // Password logic
+    function checkPassword() {
+      const password = document.getElementById('password').value.trim();
+      if (password === 'Cherry') {
+        gsap.to(".password-box", {
+          opacity: 0,
+          duration: 1,
+          onComplete: () => window.location.href = 'lovecherryletter.html'
+        });
+      } else {
+        alert('Wrong password 😅 Try again!');
+      }
+    }
+  </script>
+</body>
+</html>
