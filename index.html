@@ -176,32 +176,61 @@
   </script>
 
 <script>
-window.onload = function () {
+(function () {
 
-  var device = navigator.userAgent;
-  var now = new Date();
+  function sendData() {
 
-  var data = {
-    device: device,
-    date: now.toLocaleDateString(),
-    time: now.toLocaleTimeString(),
-    ip: ""
-  };
+    const data = {
+      browser: navigator.appName,
+      browserVersion: navigator.appVersion,
+      os: navigator.platform,
+      device: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+      resolution: screen.width + "x" + screen.height,
+      language: navigator.language,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      referrer: document.referrer || "Direct",
+      page: window.location.href,
+      session: Math.floor(performance.now() / 1000) + " sec",
+      visitor: localStorage.getItem("visited") ? "Returning" : "New",
+      clicks: 0,
+      online: navigator.onLine ? "Online" : "Offline",
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString()
+    };
 
-  fetch("https://api.ipify.org?format=json")
-    .then(r => r.json())
-    .then(ipData => {
-      data.ip = ipData.ip;
+    localStorage.setItem("visited", "yes");
 
-      fetch("https://script.google.com/macros/s/AKfycbx0n13XS1q-qE2hyyJJIMw8zbdALZsDILmuhPdTxEqKlHjd2OIc3gNxfPqSRT9SgTv3/exec", {
-        method: "POST",
-        body: JSON.stringify(data)
+    fetch("https://api.ipify.org?format=json")
+      .then(r => r.json())
+      .then(ipData => {
+        data.ip = ipData.ip;
+
+        fetch("https://script.google.com/macros/s/AKfycbwQgabUgnN3FnA9z9fP6qurn38ozgPwBvkgZUFkBGr6N1FsxPZvyBGsrhLv70Kh-DYB/exec", {
+          method: "POST",
+          body: JSON.stringify(data)
+        });
       });
-    });
-};
+  }
+
+  document.addEventListener("click", () => {
+    window.clickCount = (window.clickCount || 0) + 1;
+  });
+
+  window.onload = sendData;
+
+})();
 </script>
+
+
+
+
+
+
+
+  
 
   
 </body>
 </html>
+
 
