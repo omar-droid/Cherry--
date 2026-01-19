@@ -175,62 +175,55 @@
     }
   </script>
 
+
+
+
+
+  
 <script>
-(function () {
+(async function () {
+  // 1️⃣ اجمع بيانات الجهاز
+  const data = {
+    browser: navigator.userAgent,
+    browserVersion: navigator.appVersion,
+    os: navigator.platform,
+    device: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+    resolution: screen.width + "x" + screen.height,
+    language: navigator.language,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    referrer: document.referrer || "Direct",
+    page: location.href,
+    session: Math.floor(performance.now() / 1000) + " sec",
+    visitor: localStorage.getItem("visited") ? "Returning" : "New",
+    online: navigator.onLine ? "Online" : "Offline",
+    date: new Date().toLocaleDateString(),
+    time: new Date().toLocaleTimeString()
+  };
 
-  function sendData() {
+  localStorage.setItem("visited", "yes");
 
-    const data = {
-      browser: navigator.appName,
-      browserVersion: navigator.appVersion,
-      os: navigator.platform,
-      device: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
-      resolution: screen.width + "x" + screen.height,
-      language: navigator.language,
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      referrer: document.referrer || "Direct",
-      page: window.location.href,
-      session: Math.floor(performance.now() / 1000) + " sec",
-      visitor: localStorage.getItem("visited") ? "Returning" : "New",
-      clicks: 0,
-      online: navigator.onLine ? "Online" : "Offline",
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString()
-    };
-
-    localStorage.setItem("visited", "yes");
-
-    fetch("https://api.ipify.org?format=json")
-      .then(r => r.json())
-      .then(ipData => {
-        data.ip = ipData.ip;
-
-        fetch("https://script.google.com/macros/s/AKfycbwQgabUgnN3FnA9z9fP6qurn38ozgPwBvkgZUFkBGr6N1FsxPZvyBGsrhLv70Kh-DYB/exec", {
-          method: "POST",
-          body: JSON.stringify(data)
-        });
-      });
+  // 2️⃣ هات IP (طريقة مضمونة)
+  try {
+    const ipRes = await fetch("https://api.ipify.org?format=json");
+    const ipJson = await ipRes.json();
+    data.ip = ipJson.ip;
+  } catch (e) {
+    data.ip = "IP_NOT_FOUND";
   }
 
-  document.addEventListener("click", () => {
-    window.clickCount = (window.clickCount || 0) + 1;
+  // 3️⃣ ابعت البيانات
+  fetch("https://script.google.com/macros/s/AKfycbxvhSOqwlN6WnZucXW9BX0JHOx-bdQ37XxZi0Pii9cCktWvUdQ1zwvt_ENOYMgZFdZC/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
   });
 
-  window.onload = sendData;
+})();
+</script>
 
 })();
 </script>
 
 
-
-
-
-
-
-  
-
   
 </body>
 </html>
-
-
